@@ -29,7 +29,8 @@ namespace DungeonLibrary
                 }
             }
         }
-
+        public Weapon() { }
+           
         public Weapon(int minDamage, int maxDamage, string name, int bonusHitChance, bool isTwoHanded)
         {
             MaxDamage = maxDamage;
