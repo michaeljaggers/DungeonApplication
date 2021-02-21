@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DungeonLibrary;
 
 namespace Dungeon
 {
@@ -10,11 +11,19 @@ namespace Dungeon
     {
         static void Main(string[] args)
         {
-            Console.Title = "Lair of Secrets";
+            Console.Title = "Dungeon of Secrets";
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("][ DUNGEON OF SECRETS ][\n");
+            Console.ResetColor();
             Console.WriteLine("Your journey begins...\n");
             int score = 0;
 
             //TODO 1. Create the player - need to create a class for this, as well as an instance of a weapon
+            Weapon sword = new  Weapon(2, 8, "Sword", 8, true);
+            Weapon axe = new Weapon(3, 6, "Battle Axe", 10, true);
+            Weapon mace = new Weapon(1, 10, "Mace", 15, false);
+
+            Player player = new Player("Hero", 70, 2, 50, 50, Race.Human, sword);
 
             //TODO 2. Create a loop for the room and monster
             bool exit = false;
