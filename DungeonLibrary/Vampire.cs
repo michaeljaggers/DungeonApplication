@@ -25,10 +25,11 @@ namespace DungeonLibrary
 
         public override string ToString()
         {
-            return string.Format("{0}\n{1}", base.ToString(),
+            return string.Format("{0}{1}",
+                base.ToString(),
                 HourChangeBack.Hour < 6 || HourChangeBack.Hour > 18 ?
-                "It looks a little strong and angry..." :
-                "In the daylight, it's looking a bit weak.");
+                "It looks a little strong and angry...\n" :
+                "In the daylight, it's looking a bit weak.\n");
         }//end ToString
 
     }//end class

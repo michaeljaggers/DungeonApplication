@@ -44,12 +44,11 @@ namespace DungeonLibrary
 
         public override string ToString()
         {
-            return string.Format("\n===== Monster =====\n" +
-                "{0}\n" +
+            return string.Format("+++++ {0} +++++\n\n" +
                 "Life: {1} of {2}\n" +
                 "Damage: {3} to {4}\n" +
                 "Block: {5}\n" +
-                "Description:\n{6}\n",
+                "Description:\n\n{6}\n",
                 Name, Life, MaxLife, MinDamage, MaxDamage, Block, Description);
         }//end ToString
 

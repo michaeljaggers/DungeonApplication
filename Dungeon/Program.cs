@@ -13,32 +13,34 @@ namespace Dungeon
         {
             Console.Title = "Dungeon of Secrets";
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
-            Console.WriteLine("][ ][ DUNGEON OF SECRETS ][ ][\n");
+            Console.WriteLine("][ ][ DUNGEON OF SECRETS ][ ][\n\n");
             Console.ResetColor();
-            Console.WriteLine("Your journey begins...\n");
+            Console.WriteLine("Your journey begins...\n\n");
             int score = 0;
 
 
             //Weapons
-            Weapon sword = new  Weapon(2, 8, "Sword", 8, true);
+            Weapon sword = new  Weapon(2, 8, "Broad Sword", 8, true);
             Weapon axe = new Weapon(3, 6, "Battle Axe", 10, true);
-            Weapon mace = new Weapon(1, 10, "Mace", 15, false);
+            Weapon mace = new Weapon(1, 10, "Bludgeoning Mace", 15, false);
 
             //Choose Weapon
-            Console.WriteLine("\nAs you make your way into the dark dungeon ahead, a glistening catches your eye...\n");
-            System.Threading.Thread.Sleep(2000);
-            Console.ForegroundColor = ConsoleColor.DarkYellow;
-            Console.WriteLine("===== Choose Your Weapon =====\n");
-            Console.ResetColor();
+            Console.WriteLine("As you make your way into the dark dungeon ahead, a glistening catches your eye.\n\n");
+            System.Threading.Thread.Sleep(4000);
+            
 
             bool chosen = false;
             Weapon userWeapon = new Weapon();
 
             do
             {
-                Console.WriteLine("[S] Sword - It still looks sharp, but might require both hands to wield.\n" +
-                    "[A] Axe - This might do some damage, it will definitely require both hands to swing.\n" +
-                    "[M] Mace - A bit lighter this could be used with one hand, something just feels right about it.\n");
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                Console.WriteLine("### Choose Your Weapon ###\n");
+                Console.ResetColor();
+                Console.WriteLine(
+                    "[S] Sword  - It still looks sharp, but might require both hands to wield.\n" +
+                    "[A] Axe    - This might do some damage, it will definitely require both hands to swing.\n" +
+                    "[M] Mace   - A bit lighter, this could be used with one hand. Something just feels right about it.\n");
 
                 ConsoleKey weaponChoice = Console.ReadKey(true).Key;
 
@@ -47,28 +49,33 @@ namespace Dungeon
                 switch (weaponChoice)
                 {
                     case ConsoleKey.S:
-                        Console.WriteLine("It sure is heavy, but you're confident in your ability as you head further into the dungeon with your Broad Sword.");
+                        Console.WriteLine("It sure is heavy, but you're confident in your ability as you head further into the dungeon with your Broad Sword...\n\n");
                         userWeapon = sword;
                         chosen = true;
                         break;
                     case ConsoleKey.A:
-                        Console.WriteLine("After lifting the Battle Axe for the first time, a surge of courage flows through you as you turn towards the darkness.");
+                        Console.WriteLine("After lifting the Battle Axe for the first time, a surge of courage flows through you as you turn towards the darkness...\n\n");
                         userWeapon = axe;
                         chosen = true;
                         break;
                     case ConsoleKey.M:
-                        Console.WriteLine("Snatching up the Bludgeoning Mace, you make your way deeper into the looming pit.");
+                        Console.WriteLine("Snatching up the Bludgeoning Mace, you make your way deeper into the looming pit...\n\n");
                         userWeapon = mace;
                         chosen = true;
                         break;
                     default:
-                        Console.WriteLine("Invalid weapon choice.  Please choose again.");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                        Console.WriteLine("Invalid weapon choice.\n");
+                        Console.ResetColor();
                         break;
                 }
             } while (!chosen);
 
             //Player
             Player player = new Player("Hero", 70, 2, 50, 50, Race.Human, userWeapon);
+
+            System.Threading.Thread.Sleep(7000);
+            Console.Clear();
 
             bool exit = false;
             do
@@ -77,6 +84,9 @@ namespace Dungeon
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine(GetRoom());
                 Console.ResetColor();
+                Console.WriteLine("Press any key to continue.\n");
+                Console.ReadKey();
+                Console.Clear();
 
                 //Monsters
                 Skeleton skeleton = new Skeleton();
@@ -87,19 +97,23 @@ namespace Dungeon
                 Random random = new Random();
                 int randomMonster = random.Next(monsters.Length);
                 Monster monster = monsters[randomMonster];
-                Console.WriteLine("A monster appears: " + monster.Name);
+                Console.WriteLine("A MONSTER APPEARS! : " + monster.Name + "\n");
 
                 bool reload = false;
                 do
                 {
                     //User Menu
-                    Console.Write("\n\n# Please Choose an Action #\n" +
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.Write("### Please Choose an Action ###\n\n");
+                    Console.ResetColor();
+                    Console.Write(
                         "[A] Atack\n" +
                         "[R] Run Away\n" +
                         "[P] Player Info\n" +
                         "[M] Monster Info\n" +
                         "[X] Exit \n\n" +
-                        "Monsters Defeated: {0}\n\n", score);
+                        "Monsters Defeated: {0}\n\n",
+                        score);
 
                     ConsoleKey userChoice = Console.ReadKey(true).Key;
 
@@ -109,39 +123,53 @@ namespace Dungeon
                     switch (userChoice)
                     {
                         case ConsoleKey.A:
-                            Console.WriteLine("# Attack #\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("### Attack ###\n");
+                            Console.ResetColor();
                             Combat.DoBattle(player, monster);
                             if (monster.Life <= 0)
                             {
                                 //Find health potion chance +10 life
                                 Console.ForegroundColor = ConsoleColor.Green;
-                                Console.WriteLine("\nYou defeated {0}!\n", monster.Name);
+                                Console.WriteLine("You defeated {0}!!\n\n", monster.Name);
                                 Console.ResetColor();
                                 reload = true;
                                 score++;
                             }
                             break;
                         case ConsoleKey.R:
-                            Console.WriteLine("# Run Away #\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("### Run Away ###\n");
+                            Console.ResetColor();
                             Console.WriteLine($"{monster.Name} attacks you as you run away!\n");
+                            System.Threading.Thread.Sleep(500);
                             Combat.DoAttack(monster, player);
+                            System.Threading.Thread.Sleep(2500);
                             reload = true;
                             break;
                         case ConsoleKey.P:
-                            Console.WriteLine("# Player Information #\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("### Player Information ###\n");
+                            Console.ResetColor();
                             Console.WriteLine(player);
                             break;
                         case ConsoleKey.M:
-                            Console.WriteLine("# Monster Information #\n");
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                            Console.WriteLine("### Monster Information ###\n");
+                            Console.ResetColor();
                             Console.WriteLine(monster);
                             break;
                         case ConsoleKey.X:
                         case ConsoleKey.E:
+                            Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("Thanks for playing!\n");
+                            Console.ResetColor();
                             exit = true;
                             break;
                         default:
+                            Console.ForegroundColor = ConsoleColor.DarkRed;
                             Console.WriteLine("Unrecognized selection.  Please try again.\n");
+                            Console.ResetColor();
                             break;
                     }
 
@@ -175,7 +203,7 @@ namespace Dungeon
             };
             Random random = new Random();
             int index = random.Next(rooms.Length);
-            string room = "***** YOU FIND A NEW ROOM *****\n" + rooms[index] + "\n";
+            string room = "You enter a new room...\n\n" + rooms[index] + "\n";
 
             return room;
         }//end GetRoom

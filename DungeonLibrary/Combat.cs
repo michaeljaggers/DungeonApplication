@@ -21,19 +21,22 @@ namespace DungeonLibrary
                 defender.Life -= damageDealt;
 
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("{0} strikes {1} for {2} damage!!\n",
+                Console.WriteLine("{0} strikes {1} for {2} damage!\n",
                     attacker.Name, defender.Name, damageDealt);
                 Console.ResetColor();
             }
             else
             {
-                Console.WriteLine("{0} missed!!\n");
+                Console.WriteLine("{0} missed!\n",
+                    attacker.Name);
             }
         }//end DoAttack
 
         public static void DoBattle(Player player, Monster monster)
         {
             DoAttack(player, monster);
+
+            System.Threading.Thread.Sleep(2000);
 
             if (monster.Life > 0)
             {

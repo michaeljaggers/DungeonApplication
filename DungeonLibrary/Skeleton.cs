@@ -12,12 +12,12 @@ namespace DungeonLibrary
         {
             MaxLife = 8;
             MaxDamage = 5;
-            Name = "Skelton";
+            Name = "Skeleton";
             HitChance = 20;
             Block = 15;
             MinDamage = 1;
             Life = 8;
-            Description = "The bones of fallen heros before you reanimate and seek vengence...";
+            Description = "The bones of fallen heros before you re-animate and seek vengence...";
         }
 
     }//end class
