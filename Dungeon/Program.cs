@@ -18,7 +18,6 @@ namespace Dungeon
             Console.WriteLine("Your journey begins...\n\n");
             int score = 0;
 
-
             //Weapons
             Weapon sword = new  Weapon(2, 8, "Broad Sword", 8, true);
             Weapon axe = new Weapon(3, 6, "Battle Axe", 10, true);
@@ -28,7 +27,6 @@ namespace Dungeon
             Console.WriteLine("As you make your way into the dark dungeon ahead, a glistening catches your eye.\n\n");
             System.Threading.Thread.Sleep(4000);
             
-
             bool chosen = false;
             Weapon userWeapon = new Weapon();
 
@@ -43,23 +41,22 @@ namespace Dungeon
                     "[M] Mace   - A bit lighter, this could be used with one hand. Something just feels right about it.\n");
 
                 ConsoleKey weaponChoice = Console.ReadKey(true).Key;
-
                 Console.Clear();
 
                 switch (weaponChoice)
                 {
                     case ConsoleKey.S:
-                        Console.WriteLine("It sure is heavy, but you're confident in your ability as you head further into the dungeon with your Broad Sword...\n\n");
+                        Console.WriteLine("It is heavy, but you're confident as you head further into the dungeon with your Broadsword...\n\n");
                         userWeapon = sword;
                         chosen = true;
                         break;
                     case ConsoleKey.A:
-                        Console.WriteLine("After lifting the Battle Axe for the first time, a surge of courage flows through you as you turn towards the darkness...\n\n");
+                        Console.WriteLine("After lifting the Battle Axe, a surge of courage flows through you as you turn towards the darkness...\n\n");
                         userWeapon = axe;
                         chosen = true;
                         break;
                     case ConsoleKey.M:
-                        Console.WriteLine("Snatching up the Bludgeoning Mace, you make your way deeper into the looming pit...\n\n");
+                        Console.WriteLine("Snatching up the bludgeoning Mace, you make your way deeper into the looming pit...\n\n");
                         userWeapon = mace;
                         chosen = true;
                         break;
@@ -118,20 +115,20 @@ namespace Dungeon
                         score);
 
                     ConsoleKey userChoice = Console.ReadKey(true).Key;
-
                     Console.Clear();
 
                     //Action
                     switch (userChoice)
                     {
                         case ConsoleKey.A:
+                        case ConsoleKey.Enter://ease of use
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("### Attack ###\n");
                             Console.ResetColor();
                             Combat.DoBattle(player, monster);
                             if (monster.Life <= 0)
                             {
-                                //Find health potion chance +10 life
+                                //find health potion chance +10 life
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("You defeated {0}!!\n\n", monster.Name);
                                 Console.ResetColor();
@@ -150,6 +147,7 @@ namespace Dungeon
                             reload = true;
                             break;
                         case ConsoleKey.P:
+                        case ConsoleKey.H://hero
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("### Player Information ###\n");
                             Console.ResetColor();
@@ -162,7 +160,9 @@ namespace Dungeon
                             Console.WriteLine(monster);
                             break;
                         case ConsoleKey.X:
-                        case ConsoleKey.E:
+                        case ConsoleKey.Q://quit
+                        case ConsoleKey.E://exit
+                        case ConsoleKey.Escape://ease of use
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("Thanks for playing!\n");
                             Console.ResetColor();
@@ -181,7 +181,7 @@ namespace Dungeon
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("YOU HAVE DIED.\n");
                         Console.ResetColor();
-                        //Console beep sad sound
+                        //console beep sad sound
                         exit = true;
                     }
 
