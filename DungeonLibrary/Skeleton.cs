@@ -11,7 +11,7 @@ namespace DungeonLibrary
         public Skeleton()
         {
             MaxLife = 8;
-            MaxDamage = 5;
+            MaxDamage = 6;
             Name = "Skeleton";
             HitChance = 20;
             Block = 15;

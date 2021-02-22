@@ -91,8 +91,10 @@ namespace Dungeon
                 //Monsters
                 Skeleton skeleton = new Skeleton();
                 Vampire vampire = new Vampire("Vampire", 20, 20, 25, 10, 1, 10, "It's pale skin almost glows in the darkness.  It moves silently.");
+                Monster orc = new Monster("Orc", 10, 10, 20, 20, 1, 7, "A pig-like disgusting creature that smells of rotting flesh.");
+                Monster rat = new Monster("Rat", 8, 8, 15, 10, 1, 5, "More than your average rat.  It looks rabbid to say the least...");
 
-                Monster[] monsters = { skeleton, vampire };
+                Monster[] monsters = { skeleton, vampire, orc, rat };
 
                 Random random = new Random();
                 int randomMonster = random.Next(monsters.Length);
