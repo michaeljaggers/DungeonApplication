@@ -19,5 +19,6 @@ namespace DungeonLibrary
             Life = 8;
             Description = "The bones of fallen heros before you reanimate and seek vengence...";
         }
-    }
-}
+
+    }//end class
+}//end namespace

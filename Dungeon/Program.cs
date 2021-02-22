@@ -73,19 +73,26 @@ namespace Dungeon
             bool exit = false;
             do
             {
+                //Room
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine(GetRoom());
                 Console.ResetColor();
 
-                //TODO 4. Create a monster for the room - learn about creating objects and then randomly selecting one
                 //Monsters
                 Skeleton skeleton = new Skeleton();
+                Vampire vampire = new Vampire("Vampire", 20, 20, 25, 10, 1, 10, "It's pale skin almost glows in the darkness.  It moves silently.");
 
+                Monster[] monsters = { skeleton, vampire };
+
+                Random random = new Random();
+                int randomMonster = random.Next(monsters.Length);
+                Monster monster = monsters[randomMonster];
+                Console.WriteLine("A monster appears: " + monster.Name);
 
                 bool reload = false;
                 do
                 {
-                    #region User Menu
+                    //User Menu
                     Console.Write("\n\n# Please Choose an Action #\n" +
                         "[A] Atack\n" +
                         "[R] Run Away\n" +
@@ -93,15 +100,12 @@ namespace Dungeon
                         "[M] Monster Info\n" +
                         "[X] Exit \n\n" +
                         "Monsters Defeated: {0}\n\n", score);
-                    #endregion
 
-                    #region User Choice
                     ConsoleKey userChoice = Console.ReadKey(true).Key;
-                    #endregion
 
                     Console.Clear();
 
-                    #region Switch that runs functionality based on user choice
+                    //Action
                     switch (userChoice)
                     {
                         case ConsoleKey.A:
@@ -139,10 +143,9 @@ namespace Dungeon
                         default:
                             Console.WriteLine("Unrecognized selection.  Please try again.\n");
                             break;
-                    }//end switch
-                    #endregion
+                    }
 
-                    #region Player Life
+                    //Player Life
                     if (player.Life <= 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
@@ -151,16 +154,14 @@ namespace Dungeon
                         //Console beep sad sound
                         exit = true;
                     }
-                    #endregion
 
                 } while (!reload && !exit);
             } while (!exit);
-        }//end Main()
+        }//end Main
 
-        //TODO 14. Create GetRoom() & plug it in to the todo above
+        //Room Generation
         private static string GetRoom()
         {
-            //create an array of room descriptions - string datatype
             string[] rooms =
             {
                 "Rats inside the room shriek when they hear the door open, then they run in all directions from a putrid corpse lying in the center of the floor. As these creatures crowd around the edges of the room, seeking to crawl through a hole in one corner, they fight one another. The stinking corpse in the middle of the room looks human, but the damage both time and the rats have wrought are enough to make determining its race by appearance an extremely difficult task at best.",
@@ -172,13 +173,12 @@ namespace Dungeon
                 "Dozens of dead, winged beings lie scattered about the floor, each about the size of a cat. Their broken bodies are batlike and buglike at the same time. Each had two sets of bat wings, a long nose like a mosquito, and six legs, but many were split in half or had limbs or wings lopped off. Their forms are little more than dried husks now, and there's no sign of what killed them.",
                 "A pungent, earthy odor greets you as you pull open the door and peer into this room. Mushrooms grow in clusters of hundreds all over the floor. Looking into the room is like looking down on a forest. Tall tangles of fungus resemble forested hills, the barren floor looks like a plain between the woods, and even a trickle of water and a puddle of water that pools in a low spot bears a resemblance to a river and lake, respectively."
             };
-            //generate a Random object and get a random room description
             Random random = new Random();
-            //since the maxValue in the Next() is exclusive, we can just use the Length property to include all indexes from our array.
-            int indexNbr = random.Next(rooms.Length);
-            string room = "***** YOU FIND A NEW ROOM *****\n" + rooms[indexNbr] + "\n";
-            //return room
+            int index = random.Next(rooms.Length);
+            string room = "***** YOU FIND A NEW ROOM *****\n" + rooms[index] + "\n";
+
             return room;
-        }//end Main()
+        }//end GetRoom
+
     }//end class
 }//end namespace
