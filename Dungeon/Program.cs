@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using DungeonLibrary;
 
 namespace Dungeon
@@ -132,6 +133,22 @@ namespace Dungeon
                                 Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine("You defeated {0}!!\n\n", monster.Name);
                                 Console.ResetColor();
+
+                                //FF7 Fanfare
+                                Console.Beep(987, 53);
+                                Thread.Sleep(53);
+                                Console.Beep(987, 53);
+                                Thread.Sleep(53);
+                                Console.Beep(987, 53);
+                                Thread.Sleep(53);
+                                Console.Beep(987, 428);
+                                Console.Beep(784, 428);
+                                Console.Beep(880, 428);
+                                Console.Beep(987, 107);
+                                Thread.Sleep(214);
+                                Console.Beep(880, 107);
+                                Console.Beep(987, 857);
+
                                 reload = true;
                                 score++;
                             }
