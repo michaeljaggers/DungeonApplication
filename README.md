@@ -1,2 +1,2 @@
 # DungeonApplication
-C# Fundamentals 2 Dungeon Console Application
+C# Dungeon Console Application
