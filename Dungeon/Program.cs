@@ -180,6 +180,7 @@ namespace Dungeon
                         case ConsoleKey.Q://quit
                         case ConsoleKey.E://exit
                         case ConsoleKey.Escape://ease of use
+                            Console.WriteLine($"TOTAL MONSTERS DEFATED: {score}\n");
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             Console.WriteLine("Thanks for playing!\n");
                             Console.ResetColor();
